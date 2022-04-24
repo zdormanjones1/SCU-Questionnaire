@@ -1,190 +1,53 @@
 <!DOCTYPE html>
 <html>
-    
 <head>
+	<meta charset="UTF-8">
     <title>toggle switches</title>
-<style>
-.switch {
-	position: relative;
-	display: block;
-	vertical-align: middle;
-	width: 100px;
-	height: 30px;
-	padding: 3px;
-	margin: 0 10px 1px 0;
-	background: linear-gradient(to bottom, #63A60A, #FFFFFF 25px);
-	background-image: -webkit-linear-gradient(top, #63A60A, #FFFFFF 25px);
-	border-radius: 18px;
-	box-shadow: inset 0 -1px white, inset 0 1px 1px rgba(0, 0, 0, 0.05);
-	cursor: pointer;
-	box-sizing:content-box;
-}
-.switch-input {
-	position: absolute;
-	top: 0;
-	left: 0;
-	opacity: 0;
-	box-sizing:content-box;
-}
-.switch-label {
-	position: relative;
-	display: block;
-	height: inherit;
-	font-size: 10px;
-	text-transform: uppercase;
-	background: #63A60A;
-	border-radius: inherit;
-	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 0 2px rgba(0, 0, 0, 0.15);
-	box-sizing:content-box;
-}
-.switch-label:before, .switch-label:after {
-	position: absolute;
-	top: 50%;
-	margin-top: -.5em;
-	line-height: 1;
-	-webkit-transition: inherit;
-	-moz-transition: inherit;
-	-o-transition: inherit;
-	transition: inherit;
-	box-sizing:content-box;
-}
-.switch-label:before {
-	content: attr(data-off);
-	right: 11px;
-	color: #aaaaaa;
-	text-shadow: 0 1px rgba(255, 255, 255, 0.5);
-}
-.switch-label:after {
-	content: attr(data-on);
-	left: 11px;
-	color: #FFFFFF;
-	text-shadow: 0 1px rgba(0, 0, 0, 0.2);
-	opacity: 0;
-}
-.switch-input:checked ~ .switch-label {
-	background: ##ffffff;
-	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15), inset 0 0 3px rgba(0, 0, 0, 0.2);
-}
-.switch-input:checked ~ .switch-label:before {
-	opacity: 0;
-}
-.switch-input:checked ~ .switch-label:after {
-	opacity: 1;
-}
-.switch-handle {
-	position: absolute;
-	top: 4px;
-	left: 4px;
-	width: 28px;
-	height: 28px;
-	background: linear-gradient(to bottom, #FFFFFF 40%, #f0f0f0);
-	background-image: -webkit-linear-gradient(top, #FFFFFF 40%, #f0f0f0);
-	border-radius: 100%;
-	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
-}
-.switch-handle:before {
-	content: "";
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin: -6px 0 0 -6px;
-	width: 12px;
-	height: 12px;
-	background: linear-gradient(to bottom, #63A60A, #FFFFFF);
-	background-image: -webkit-linear-gradient(top, #63A60A, #FFFFFF);
-	border-radius: 6px;
-	box-shadow: inset 0 1px rgba(0, 0, 0, 0.02);
-}
-.switch-input:checked ~ .switch-handle {
-	left: 74px;
-	box-shadow: -1px 1px 5px rgba(0, 0, 0, 0.2);
-}
- 
-/* Transition
-========================== */
-.switch-label, .switch-handle {
-	transition: All 0.3s ease;
-	-webkit-transition: All 0.3s ease;
-	-moz-transition: All 0.3s ease;
-	-o-transition: All 0.3s ease;
-}
-</style>
+	<link rel="stylesheet" type="text/css" href="page_layout.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="toggleSwitchController.js"></script>
 </head>
-<script>
-	function displaySharesLargeArrayCSSAccount() {
-
-		var val = 'ODTSharesHTML==0000123456-0009*0000123456 S0009_1_1|0001234567-0040*0001234567 S0040_1_0|0012345678-0040*0012345678 S0040_0_0';
-		var switch_str = '';
-
-		var typeElement = val.split('^');
-
-		for (var i = 0; i < Object.keys(typeElement).length; i++) {
-
-			var tmpKey = typeElement[i].split('==')[0];
-			var elementValues = typeElement[i].split('==')[1]; // everything after the equals sign, array starts at zero
-			var elementValuesSplitLines = elementValues.split('|');
-			
-			
-			for (var j = 0; j < Object.keys(elementValuesSplitLines).length; j++) {
-
-				var elementValuesSplit = elementValuesSplitLines[j].split('*');
-
-				if (tmpKey === 'ODTSharesHTML') {
-
-					switch_str += '<div style="position: relative; width: 100%; overflow: auto; left: 0px;">';
-					switch_str += '<div style="position: relative; width: 100%; top: 0px; left: 0px;">';
-					switch_str += '<table border="0" width="100%"><tr><td>';
-					var displaySwitches = elementValuesSplit[1].split('_');
-					switch_str += displaySwitches[0];
-					switch_str += '</td><td style=\'text-align: right;vertical-align:middle;\'>';
-					switch_str += '<b>Debit Transactions</b><td style=\'text-align: left;vertical-align:middle;\'>';
-					switch_str += '<div style="display: table; vertical-align: middle">'
-					var switch_ODT_Opt_In_Status = displaySwitches[1];
-					switch_ODT_Opt_In_Status = (switch_ODT_Opt_In_Status === "1" ? "checked" : "unchecked");
-					switch_str += '<label class="switch"><input class="switch-input" type="checkbox" id="' + 'ODT_Opt_In_Status_' + j + '"' + switch_ODT_Opt_In_Status + '/>';
-					switch_str += '<span class="switch-label" data-on="On" data-off="Off"></span><span class="switch-handle"></span>';
-					switch_str += '</label></div></td></td>';
-					switch_str += '<td style=\'text-align: right;vertical-align:middle;\'>';
-					switch_str += '<b>ATM Withdrawals</b><td style=\'text-align: left;vertical-align:middle;\'>';
-					switch_str += '<div style="display: table; vertical-align: middle">'
-					var switch_Request_Method = displaySwitches[2];
-					switch_Request_Method = (switch_Request_Method === "1" ? "checked" : "unchecked");
-					switch_str += '<label class="switch"><input class="switch-input" type="checkbox" id="' + 'Request_Method_' + j + '"' + switch_Request_Method + '/>';
-					switch_str += '<span class="switch-label" data-on="On" data-off="Off"></span><span class="switch-handle"></span>';
-					switch_str += '</label></div></td></td>';
-					switch_str += '</td></tr></table></div></div>';
-				}
-			}
-			
-			var elemDiv = document.getElementById("shareSwitches");
-			elemDiv.outerHTML = switch_str;
-		}
-	}
-
-	function getSubmitValues() {
-
-		var elemDiv = document.getElementById("ODT_Opt_In_Status_1");
-		alert(elemDiv.checked);
-	}
-
-	window.onload = function () {
-		displaySharesLargeArrayCSSAccount()
-	};
-	
-
-</script>
 <body>
-<span>All members have free overdraft protection that automatically transfers available funds from your Primary Savings Account (0000) to your Debit Card in the event an account overdraft occurs.</span>
-<br>
-<div style="position:relative; width: 100%; bottom: 0px; height: 20px; left: 0px;">
-<br>
-
-<div>
-<div id="shareSwitches">
-</div>
-</div>
-
-<button onclick="getSubmitValues()">Is the second account Debit Transactions flag enabled?</button>
-</div>
+	<span>All members have free overdraft protection that automatically transfers available funds from your Primary Savings Account (0000) to your Debit Card in the event an account overdraft occurs.</span>
+	<br>
+	<div style="position:relative; width: 100%; bottom: 0px; height: 20px; left: 0px;" ng-app="ToggleSwitchApp" ng-controller="ToggleSwitchController">
+		<br>
+		<div style="position: relative; width: 100%; overflow: auto; left: 0px;">
+			<div style="position: relative; width: 100%; top: 0px; left: 0px;">
+				<table border="0" width="100%">
+					<tr ng-repeat="record in overdraftProtectionData">
+						<td class="field1">{{record.memberId}}</td>
+						<td class="field2">{{record.accountId}}</td>
+						<td class="field3">
+							<b>Debit Transactions</b>
+						</td>
+						<td class="field4">
+							<div style="display: table; vertical-align: middle">
+								<label class="switch">
+									<input class="switch-input" type="checkbox" ng-model="record.ODT_Opt_In_Status_flag" ng-checked="{{record.ODT_Opt_In_Status_flag}}" id="ODT_Opt_In_Status_flag_{{$index}}" />
+									<span class="switch-label" data-on="On" data-off="Off"></span><span class="switch-handle"></span>
+								</label>
+							</div>
+						</td>
+						<td class="field5">
+							<b>ATM Withdrawals</b>
+						</td>
+						<td>
+							<div style="display: table; vertical-align: middle">
+								<label class="switch">
+									<input class="switch-input" type="checkbox" ng-model="record.Request_Method_flag" ng-checked="record.Request_Method_flag" id="Request_Method_flag_{{$index}}" />
+									<span class="switch-label" data-on="On" data-off="Off"></span><span class="switch-handle"></span>
+								</label>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div style="position:relative; width: 100%; bottom: 0px; height: 20px; left: 0px;">
+			<br>
+			<button ng-click="buttonClick()" >Is the second account Debit Transactions flag enabled?</button>
+		</div>
+	</div>
 </body>
 </html>
