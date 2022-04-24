@@ -123,7 +123,8 @@
 			var tmpKey = typeElement[i].split('==')[0];
 			var elementValues = typeElement[i].split('==')[1]; // everything after the equals sign, array starts at zero
 			var elementValuesSplitLines = elementValues.split('|');
-
+			
+			
 			for (var j = 0; j < Object.keys(elementValuesSplitLines).length; j++) {
 
 				var elementValuesSplit = elementValuesSplitLines[j].split('*');
@@ -153,9 +154,10 @@
 					switch_str += '</label></div></td></td>';
 					switch_str += '</td></tr></table></div></div>';
 				}
-				var elemDiv = document.getElementById("shareSwitches");
-				elemDiv.outerHTML = switch_str;
 			}
+			
+			var elemDiv = document.getElementById("shareSwitches");
+			elemDiv.outerHTML = switch_str;
 		}
 	}
 
@@ -166,7 +168,6 @@
 	}
 
 	window.onload = function () {
-
 		displaySharesLargeArrayCSSAccount()
 	};
 	
@@ -177,6 +178,12 @@
 <br>
 <div style="position:relative; width: 100%; bottom: 0px; height: 20px; left: 0px;">
 <br>
+
+<div>
+<div id="shareSwitches">
+</div>
+</div>
+
 <button onclick="getSubmitValues()">Is the second account Debit Transactions flag enabled?</button>
 </div>
 </body>
